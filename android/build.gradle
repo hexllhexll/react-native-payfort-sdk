@@ -41,7 +41,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:multidex:1.0.3'
-    implementation project(path: ':FORTSDKv1.5')
+    implementation project(path: ':FORTSDKv1.6')
     implementation 'com.victor:lib:1.0.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.shamanland:fonticon:0.1.8'
