@@ -47,7 +47,7 @@
 
 ### Android
 
-1. Download PayFort module file from [here](https://docs.payfort.com/docs/api/build/lib/FORTSDKv1.5.zip).
+1. Download PayFort module file from [here](https://docs.payfort.com/docs/mobile-sdk/build/lib/FORTSDKv1.6.1.zip).
 2. Extract FORTSDKv1.5.zip.
 3. Open directory of android of your react native project in Android Studio.
 4. Click on File → New → New Module→ Select "Import .JAR/.AAR Packages" → Click on Next → Select FORTSDKv1.5.aar in File name → Click on Finish.
