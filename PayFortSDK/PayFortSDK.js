@@ -9,6 +9,21 @@
 // import payFort from './src/Component/PayFort/PayFort';
 import { NativeModules, Platform, PermissionsAndroid } from "react-native";
 const { PayFort } = NativeModules;
+// : "PURCHASE",
+// : response.access_code,
+// : response.merchant_identifier,
+// : response.order_rand,
+// : response.request_phrase,
+// : 'Order ID ' + response.order_rand,
+// : amount.toString(),
+// : "SAR",
+// : "en",
+// email: auth.info.email,
+// phone_number: auth.info.phone,
+
+
+// testing: false,
+// sdk_token: response.result.sdk_token,
 
 export const RNPayFort = async parameter => {
   if (Platform.OS === "android") {
@@ -19,15 +34,19 @@ export const RNPayFort = async parameter => {
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         return new Promise(async (resolve, reject) => {
           if (
+
+
             parameter.command &&
             parameter.access_code &&
             parameter.merchant_identifier &&
+            parameter.merchant_reference &&
             parameter.sha_request_phrase &&
-            parameter.email &&
-            parameter.language &&
+            parameter.order_description &&
             parameter.amount &&
             parameter.currencyType &&
-            parameter.testing
+            parameter.language &&
+            parameter.email &&
+            parameter.phone_number
           ) {
             await PayFort.Pay(
               JSON.stringify(parameter),
@@ -40,7 +59,7 @@ export const RNPayFort = async parameter => {
             );
           } else {
             reject({
-              response_code: "MissingParameter",
+              response_code: "MissingParameter 3",
               response_message: "Please enter all required Parameter."
             });
           }
@@ -64,17 +83,19 @@ export const RNPayFort = async parameter => {
         parameter.command &&
         parameter.access_code &&
         parameter.merchant_identifier &&
+        parameter.merchant_reference &&
         parameter.sha_request_phrase &&
-        parameter.email &&
-        parameter.language &&
+        parameter.order_description &&
         parameter.amount &&
         parameter.currencyType &&
-        parameter.testing
+        parameter.language &&
+        parameter.email &&
+        parameter.phone_number
       ) {
         await PayFort.Pay(
           JSON.stringify(parameter),
           successResponseData => {
-            console.log('successResponseData',successResponseData)
+            console.log('successResponseData', successResponseData)
             resolve(successResponseData);
           },
           errorResponseData => {
@@ -83,7 +104,7 @@ export const RNPayFort = async parameter => {
         );
       } else {
         reject({
-          response_code: "MissingParameter",
+          response_code: "MissingParameter 1",
           response_message: "Please enter all required Parameter."
         });
       }
@@ -91,7 +112,7 @@ export const RNPayFort = async parameter => {
   }
 };
 
-export const applePayViaPayfort = async (parameter) => { 
+export const applePayViaPayfort = async (parameter) => {
   if (Platform.OS === "ios") {
 
     console.log('parameter====>test=>', parameter)
@@ -100,17 +121,19 @@ export const applePayViaPayfort = async (parameter) => {
         parameter.command &&
         parameter.access_code &&
         parameter.merchant_identifier &&
+        parameter.merchant_reference &&
         parameter.sha_request_phrase &&
-        parameter.email &&
-        parameter.language &&
+        parameter.order_description &&
         parameter.amount &&
         parameter.currencyType &&
-        parameter.testing
+        parameter.language &&
+        parameter.email &&
+        parameter.phone_number
       ) {
         await PayFort.PayWithApplePay(
           JSON.stringify(parameter),
           successResponseData => {
-            console.log('successResponseData',successResponseData)
+            console.log('successResponseData', successResponseData)
             resolve(successResponseData);
           },
           errorResponseData => {
@@ -119,7 +142,7 @@ export const applePayViaPayfort = async (parameter) => {
         );
       } else {
         reject({
-          response_code: "MissingParameter",
+          response_code: "MissingParameter 2",
           response_message: "Please enter all required Parameter."
         });
       }
